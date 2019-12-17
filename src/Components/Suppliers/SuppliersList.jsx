@@ -17,6 +17,7 @@ const useStyles = makeStyles({
     },
     button: {
         marginLeft: 1100,
+        marginTop: -80,
     }
 });
 
@@ -37,9 +38,12 @@ export default function SimpleTable() {
 
     return (
         <Fragment>
+            <div>
+                <h3>List de fornecedores</h3>
             {/*<Link to="/cadastro-fornecedores">*/}
                 <Button className={classes.button} href="/cadastro-fornecedores" color='primary'><AddIcon/></Button>
             {/*</Link>*/}
+            </div>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
