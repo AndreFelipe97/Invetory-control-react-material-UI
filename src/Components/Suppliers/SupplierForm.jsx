@@ -1,9 +1,10 @@
-import React, {useState, useEffect, Fragment} from 'react';
+import React, { useState, useEffect, Fragment } from 'react';
 import TextField from '@material-ui/core/TextField';
-import {makeStyles} from '@material-ui/core/styles';
-import Button from "@material-ui/core/Button";
+import { makeStyles } from '@material-ui/core/styles';
+import { Button, Grid } from "@material-ui/core";
 
 import api from "../../Services/api";
+import Input from "../../Itens/Input";
 
 
 const useStyles = makeStyles(theme => ({
@@ -58,7 +59,7 @@ export default function FormPropsTextFields(props) {
     const handleChange = fieldName => event => {
         console.log(fieldName)
         console.log(event.target.value)
-        setValues({...values, [fieldName]: event.target.value});
+        setValues({ ...values, [fieldName]: event.target.value });
     }
 
     useEffect(() => {
@@ -67,93 +68,100 @@ export default function FormPropsTextFields(props) {
     }, []);
 
     return (
-        <Fragment>
+        values && <>
             <h3>Cadastro de fornecedores</h3>
             <form className={classes.root} noValidate autoComplete="off">
-                <div>
-                    <TextField
-                        id="codigo"
+                <Grid container
+                    direction="row"
+                    justify="flex-start"
+                    alignItems="flex-start"
+                >
+                    <Input
                         label="Cód do fornecedor"
                         required
-                        // value={values['cod']}
+                        columns={{ sm: 12, lg: 3, md: 3, xs: 3 }}
+                        style={{width: '100%', paddingRight: '20px'}}
+                        value={values['cod']}
                         onChange={handleChange('cod')}
                     />
-                    <TextField
-                        id="corporateName"
+                    <Input
                         label="Razão sócial"
                         required
-                        style={{width: 450}}
-                        fullWidth
-                        margin="normal"
-                        // value={values['corporate_name']}
+                        columns={{ sm: 12, lg: 3, md: 3, xs: 3 }}
+                        style={{width: '100%', paddingRight: '20px'}}
+                        value={values['corporate_name']}
                         onChange={handleChange('corporate_name')}
-                    />
-                    <TextField
-                        id="cnpj"
+                    /> 
+                    <Input
                         label="CNPJ"
                         required
-                        // value={values['cnpj']}
+                        columns={{ sm: 12, lg: 3, md: 3, xs: 3 }}
+                        style={{width: '100%', paddingRight: '20px'}}
+                        value={values['cnpj']}
                         onChange={handleChange('cnpj')}
                     />
-                    <TextField
-                        id="fone"
+                    <Input
                         label="Telefone"
                         required
-                        // value={values['fone']}
+                        columns={{ sm: 12, lg: 3, md: 3, xs: 3 }}
+                        style={{width: '100%', paddingRight: '20px'}}
+                        value={values['fone']}
                         onChange={handleChange('fone')}
-                    />
-                </div>
-                <div>
-                    <TextField
-                        id="publicPlace"
-                        label="logradouro"
-                        style={{width: 440}}
-                        fullWidth
+                    /> 
+                </Grid>
+
+                <Grid container>
+                    <Input
+                        label="Logradouro"
+                        style={{width: '100%', paddingRight: '20px'}}
                         required
-                        // value={values['public_place']}
+                        columns={{ sm: 12, lg: 4, md: 4, xs: 3 }}
+                        value={values['public_place']}
                         onChange={handleChange('public_place')}
                     />
-                    <TextField
-                        id="number"
+                    <Input
                         label="Número"
+                        style={{width: '100%', paddingRight: '20px'}}
                         required
-                        // value={values['number']}
+                        columns={{ sm: 12, lg: 4, md: 4, xs: 4 }}
+                        value={values['number']}
                         onChange={handleChange('number')}
                     />
-                    <TextField
-                        id="neighborhood"
+                    <Input
                         label="Bairro"
-                        style={{width: 440}}
-                        fullWidth
+                        style={{width: '100%', paddingRight: '20px'}}
                         required
-                        // value={values['neighborhood']}
+                        columns={{ sm: 12, lg: 4, md: 4, xs: 4 }}
+                        value={values['neighborhood']}
                         onChange={handleChange('neighborhood')}
                     />
-                </div>
-                <div>
-                    <TextField
-                        id="city"
+                </Grid>
+
+                <Grid container>
+                    <Input
                         label="Cidade"
-                        style={{width: 550}}
-                        fullWidth
+                        // style={{ width: 550 }}
                         required
-                        // value={values['city']}
+                        style={{width: '100%', paddingRight: '20px'}}
+                        columns={{ sm: 12, lg: 6, md: 6, xs: 6 }}
+                        value={values['city']}
                         onChange={handleChange('city')}
                     />
-                    <TextField
-                        id="state"
+                    <Input
                         label="Estado"
-                        style={{width: 550}}
-                        fullWidth
+                        // style={{ width: 550 }}
                         required
-                        // value={values['state']}
+                        style={{width: '100%', paddingRight: '20px'}}
+                        columns={{ sm: 12, lg: 6, md: 6, xs: 6 }}
+                        value={values['state']}
                         onChange={handleChange('state')}
                     />
-                </div>
+                </Grid>
+
                 <Button variant="contained" color="primary" onClick={e => handleSubmit(values)}>
                     Salvar
                 </Button>
             </form>
-        </Fragment>
+        </>
     );
 }
