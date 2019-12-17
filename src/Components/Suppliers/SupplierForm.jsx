@@ -1,11 +1,12 @@
 import React, { useState, useEffect, Fragment } from 'react';
 import TextField from '@material-ui/core/TextField';
 import { makeStyles } from '@material-ui/core/styles';
-import { Button, Grid } from "@material-ui/core";
+import { Grid } from "@material-ui/core";
 import {useHistory} from 'react-router-dom'
 
 import api from "../../Services/api";
 import Input from "../../Itens/Input";
+import Button from "../../Itens/Button";
 
 
 const useStyles = makeStyles(theme => ({
@@ -166,14 +167,28 @@ export default function FormPropsTextFields(props) {
                 </Grid>
                 <Grid container>
                     <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
-                        <Button variant="contained" style={{ width: '100%', marginTop:'20px' }} color="primary" onClick={e => handleSubmit(values)}>
+                        {/* <Button variant="contained" style={{ width: '100%', marginTop:'20px' }} color="primary" onClick={e => handleSubmit(values)}>
                             Salvar
-                        </Button>
+                        </Button> */}
+                        <Button
+                            variant='contained'
+                            style={{ width: '100%', marginTop:'20px' }}
+                            color='primary'
+                            onClick={e => handleSubmit(values)}
+                            name='Salvar'
+                        />
                     </Grid>
                     <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
-                        <Button variant="contained" onClick={handleClick} style={{ width: '100%', marginLeft: '20px', marginTop:'20px' }} color="secondary">
+                        {/* <Button variant="contained" onClick={handleClick} style={{ width: '100%', marginLeft: '20px', marginTop:'20px' }} color="secondary">
                             Cancelar
-                        </Button>
+                        </Button> */}
+                        <Button
+                            variant='contained'
+                            style={{ width: '100%', marginLeft: '20px', marginTop:'20px' }}
+                            color='secondary'
+                            onClick={handleClick}
+                            name='Cancelar'
+                        />
                     </Grid>
                 </Grid>
             </form>
