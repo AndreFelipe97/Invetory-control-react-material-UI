@@ -3,9 +3,12 @@ import ReactDOM from 'react-dom';
 import './index.css';
 import Sidebar from "./Layout/Sidebar/Sidebar";
 import * as serviceWorker from './serviceWorker';
+import { BrowserRouter } from 'react-router-dom'
 
 ReactDOM.render(
-    <Sidebar/>
+    <BrowserRouter>
+        <Sidebar/>
+    </BrowserRouter>
     , document.getElementById('root'));
 
 // If you want your app to work offline and load faster, you can change
