@@ -5,7 +5,8 @@ import AddIcon from '@material-ui/icons/Add'
 import { useHistory } from "react-router-dom"
 
 import api from "../../Services/api";
-import Button from '../../Itens/Button'
+import Button from '../../Itens/Button';
+import Breadcrumbs from '../../Itens/Breadcrumbs';
 
 
 const useStyles = makeStyles({
@@ -42,6 +43,13 @@ export default function SimpleTable() {
 
     return (
         <>
+            <Grid
+                container
+                direction='row'
+                justify='flex-end'
+            >
+                <Breadcrumbs label='Lista de fornecedores' path='/lista-fornecedores'/>
+            </Grid>
             <Grid container
                 direction="row"
                 justify="flex-start"
