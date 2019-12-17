@@ -64,7 +64,6 @@ export default function FormPropsTextFields(props) {
     useEffect(() => {
         const id = props.match.params['id'] ? props.match.params['id'] : null
         loadForm(id);
-        console.log(props)
     }, []);
 
     return (
