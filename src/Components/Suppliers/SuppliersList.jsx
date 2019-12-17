@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import { makeStyles } from '@material-ui/core/styles';
-import Table from '@material-ui/core/Table';
+import { Table } from '@material-ui/core';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
@@ -9,7 +9,7 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add'
 import { Button, Grid } from "@material-ui/core";
-// import {Link} from "react-router-dom"
+import {Link} from "react-router-dom"
 
 import api from "../../Services/api";
 
@@ -50,9 +50,9 @@ export default function SimpleTable() {
                     <h3>List de fornecedores</h3>
                 </Grid>
                 <Grid item sm={12} lg={1} md={1} xl={12}>
-                    {/*<Link to="/cadastro-fornecedores">*/}
-                    <Button href="/cadastro-fornecedores" color='primary'><AddIcon /></Button>
-                    {/*</Link>*/}
+                    <Link to="/cadastro-fornecedores">
+                        <Button color='primary'><AddIcon /></Button>
+                    </Link>
                 </Grid>
             </Grid>
             <TableContainer component={Paper}>
