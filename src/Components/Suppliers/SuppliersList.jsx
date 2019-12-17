@@ -11,6 +11,8 @@ import AddIcon from '@material-ui/icons/Add'
 import Button from "@material-ui/core/Button";
 // import {Link} from "react-router-dom"
 
+import api from "../../Services/api";
+
 const useStyles = makeStyles({
     table: {
         minWidth: 650,
@@ -35,6 +37,11 @@ const rows = [
 
 export default function SimpleTable() {
     const classes = useStyles();
+
+    const handleDatas = () => {
+        api.get('/fornecedores/?sort=-createdAt')
+            .then(res => console.log(res))
+    };
 
     return (
         <Fragment>
