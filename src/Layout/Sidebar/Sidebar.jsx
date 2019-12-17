@@ -21,7 +21,6 @@ import AssignmentIcon from '@material-ui/icons/Assignment';
 // import Link from 'react-router-dom'
 
 import Routes from '../../Routes/Routes'
-import SuppliersList from "../../Components/Suppliers/SuppliersList";
 
 
 const drawerWidth = 240;

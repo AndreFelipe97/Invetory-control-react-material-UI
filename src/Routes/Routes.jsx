@@ -11,7 +11,7 @@ export default props => (
         <Switch>
             <Route path='/lista-fornecedores' component={SuppliersList} />
             <Route path='/cadastro-fornecedores' component={SupplierForm} />
-            <Redirect from='*' to='/fornecedores' />
+            <Redirect from='*' to='/lista-fornecedores' />
         </Switch>
     </BrowserRouter>
 )
