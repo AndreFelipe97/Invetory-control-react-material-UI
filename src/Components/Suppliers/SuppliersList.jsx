@@ -1,5 +1,5 @@
-import React, {Fragment} from 'react';
-import {makeStyles} from '@material-ui/core/styles';
+import React, { Fragment } from 'react';
+import { makeStyles } from '@material-ui/core/styles';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -8,7 +8,7 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import AddIcon from '@material-ui/icons/Add'
-import Button from "@material-ui/core/Button";
+import { Button, Grid } from "@material-ui/core";
 // import {Link} from "react-router-dom"
 
 import api from "../../Services/api";
@@ -17,14 +17,10 @@ const useStyles = makeStyles({
     table: {
         minWidth: 650,
     },
-    button: {
-        marginLeft: 1100,
-        marginTop: -80,
-    }
 });
 
 function createData(name, calories, fat, carbs, protein) {
-    return {name, calories, fat, carbs, protein};
+    return { name, calories, fat, carbs, protein };
 }
 
 const rows = [
@@ -44,13 +40,21 @@ export default function SimpleTable() {
     };
 
     return (
-        <Fragment>
-            <div>
-                <h3>List de fornecedores</h3>
-            {/*<Link to="/cadastro-fornecedores">*/}
-                <Button className={classes.button} href="/cadastro-fornecedores" color='primary'><AddIcon/></Button>
-            {/*</Link>*/}
-            </div>
+        <>
+            <Grid container
+                direction="row"
+                justify="flex-start"
+                alignItems="center"
+            >
+                <Grid item sm={12} lg={11} md={11} xl={12}>
+                    <h3>List de fornecedores</h3>
+                </Grid>
+                <Grid item sm={12} lg={1} md={1} xl={12}>
+                    {/*<Link to="/cadastro-fornecedores">*/}
+                    <Button href="/cadastro-fornecedores" color='primary'><AddIcon /></Button>
+                    {/*</Link>*/}
+                </Grid>
+            </Grid>
             <TableContainer component={Paper}>
                 <Table className={classes.table} aria-label="simple table">
                     <TableHead>
@@ -77,6 +81,6 @@ export default function SimpleTable() {
                     </TableBody>
                 </Table>
             </TableContainer>
-        </Fragment>
+        </>
     );
 }
