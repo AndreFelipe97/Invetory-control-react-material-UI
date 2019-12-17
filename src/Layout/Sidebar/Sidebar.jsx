@@ -1,7 +1,7 @@
 import React from 'react';
 import clsx from 'clsx';
-import {makeStyles, useTheme} from '@material-ui/core/styles';
-import Drawer from '@material-ui/core/Drawer';
+import { makeStyles, useTheme } from '@material-ui/core/styles';
+import { Drawer } from '@material-ui/core';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
 import List from '@material-ui/core/List';
@@ -18,7 +18,7 @@ import ListItemText from '@material-ui/core/ListItemText';
 import PersonIcon from '@material-ui/icons/Person';
 import CreateIcon from '@material-ui/icons/Create';
 import AssignmentIcon from '@material-ui/icons/Assignment';
-// import Link from 'react-router-dom'
+import { useHistory } from "react-router-dom"
 
 import Routes from '../../Routes/Routes'
 
@@ -98,10 +98,15 @@ export default function MiniDrawer() {
     const handleDrawerClose = () => {
         setOpen(false);
     };
+    let history = useHistory();
+
+    const handleClick = path => event  => {
+        history.push(path);
+    }
 
     return (
         <div className={classes.root}>
-            <CssBaseline/>
+            <CssBaseline />
             <AppBar
                 position="fixed"
                 className={clsx(classes.appBar, {
@@ -118,7 +123,7 @@ export default function MiniDrawer() {
                             [classes.hide]: open,
                         })}
                     >
-                        <MenuIcon/>
+                        <MenuIcon />
                     </IconButton>
                     <Typography variant="h6" noWrap>
                         {/* Titulo da página*/}
@@ -141,24 +146,28 @@ export default function MiniDrawer() {
                 <div className={classes.toolbar}>
                     <IconButton onClick={handleDrawerClose}>
                         Inventory control
-                        {theme.direction === 'rtl' ? <ChevronRightIcon/> : <ChevronLeftIcon/>}
+                        {theme.direction === 'rtl' ? <ChevronRightIcon /> : <ChevronLeftIcon />}
                     </IconButton>
                 </div>
-                <Divider/>
+                <Divider />
                 <List>
-                    {['Inventory', 'Suppliers', 'Orders'].map((text, index) => (
-                        <ListItem button key={text}>
-                            <ListItemIcon>{index === 0 ? <AssignmentIcon/> :
-                                '' || index === 1 ? <PersonIcon/> : '' || index === 2 ?
-                                    <CreateIcon/> : ''}</ListItemIcon>
-                            <ListItemText primary={text}/>
+                    {[
+                        { label: 'Inventory', path: '/', icon: (<AssignmentIcon />) },
+                        { label: 'Suppliers', path: '/lista-fornecedores', icon: (<PersonIcon />) },
+                        { label: 'Orders', path: '/', icon: (<CreateIcon />) }
+                    ].map((item, index) => (
+                        <ListItem button key={index} onClick={handleClick(item.path)}>
+                                <ListItemIcon>
+                                    {item.icon}
+                                </ListItemIcon>
+                                <ListItemText primary={item.label} /> 
                         </ListItem>
                     ))}
                 </List>
             </Drawer>
             <main className={classes.content}>
-                <div className={classes.toolbar}/>
-                <Routes/>
+                <div className={classes.toolbar} />
+                <Routes />
             </main>
         </div>
     );
