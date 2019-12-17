@@ -46,10 +46,10 @@ export default function SimpleTable() {
                 justify="flex-start"
                 alignItems="center"
             >
-                <Grid item sm={12} lg={11} md={11} xl={12}>
+                <Grid item xs={11} sm={12} lg={11} md={11} xl={11}>
                     <h3>List de fornecedores</h3>
                 </Grid>
-                <Grid item sm={12} lg={1} md={1} xl={12}>
+                <Grid item xs={1} sm={12} lg={1} md={1} xl={1}>
                     <Link to="/cadastro-fornecedores">
                         <Button color='primary'><AddIcon /></Button>
                     </Link>
