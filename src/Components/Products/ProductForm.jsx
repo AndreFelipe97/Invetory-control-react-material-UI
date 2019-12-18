@@ -5,6 +5,7 @@ import { useHistory } from 'react-router-dom';
 import api from '../../Services/api';
 import Input from '../../Itens/Input';
 import Button from '../../Itens/Button';
+import {MaskMonetario} from '../../Utils/Mask';
 
 
 const useStyles = makeStyles(theme => ({
@@ -116,6 +117,7 @@ export default function FormPropsTextFields(props) {
                         required
                         style={{ width: '100%', paddingRight: '20px' }}
                         columns={{ xs: 12, sm: 12, md: 3, lg: 3, xl: 3 }}
+                        value={MaskMonetario(values.buy)}
                         onChange={handleChange('buy')}
                     />
                     <Input
@@ -124,6 +126,7 @@ export default function FormPropsTextFields(props) {
                         required
                         style={{ width: '100%', paddingRight: '20px' }}
                         columns={{ xs: 12, sm: 12, md: 3, lg: 3, xl: 3 }}
+                        value={MaskMonetario(values.sale)}
                         onChange={handleChange('sale')}
                     />
                 </Grid>
