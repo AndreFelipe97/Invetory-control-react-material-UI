@@ -12,7 +12,9 @@ export default props =>
             type={props.type}
             required
             value={props.value}
-            maxLength={props.maxLength}
+            inputProps={{
+                maxLength: props.maxLength,
+            }}
             onChange={props.onChange}
         />
     </Grid>
