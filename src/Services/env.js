@@ -1,1 +1,1 @@
-export const rota = 'http://127.0.0.1:8000';
+export const rota = 'https://api-invetory-control.herokuapp.com'
