@@ -1,11 +1,11 @@
-import React, { useState, useEffect, Fragment } from 'react';
-import { makeStyles } from '@material-ui/core/styles';
-import { Grid } from "@material-ui/core";
+import React, { useState, useEffect } from 'react';
+import { makeStyles, Grid } from '@material-ui/core';
 import {useHistory} from 'react-router-dom'
 
 import api from "../../Services/api";
 import Input from "../../Itens/Input";
 import Button from "../../Itens/Button";
+import { maskCnpj, unMaskCnpj, unMaskFone, maskFone } from "../../Utils/Mask"
 
 
 const useStyles = makeStyles(theme => ({
@@ -21,7 +21,7 @@ export default function FormPropsTextFields(props) {
     const classes = useStyles();
     const [values, setValues] = useState(null);
 
-    const handleSubmit = (values) => {
+    const handleSubmit = () => {
         console.log(values)
         api.post('/fornecedores/', values)
             .then(res => console.log(res))
@@ -29,15 +29,15 @@ export default function FormPropsTextFields(props) {
 
     const createInstance = () => {
         setValues({
-            cod: null,
-            corporate_name: null,
-            cnpj: null,
-            fone: null,
-            public_place: null,
-            number: null,
-            neighborhood: null,
-            city: null,
-            state: null,
+            cod: '',
+            corporate_name: '',
+            cnpj: '',
+            fone: '',
+            public_place: '',
+            number: '',
+            neighborhood: '',
+            city: '',
+            state: '',
         });
     };
 
@@ -66,17 +66,17 @@ export default function FormPropsTextFields(props) {
 
     useEffect((event) => {
         const id = props.match.params['id'] ? props.match.params['id'] : null
-        loadForm(id);
+        loadForm(id); 
     }, []);
 
     let history = useHistory();
 
     function handleClick() {
         history.push("/lista-fornecedores");
-      }
+    }
 
     return (
-        values &&<>
+        values && <>
             <h3>Cadastro de fornecedores</h3>
             <form className={classes.root} noValidate autoComplete="off">
                 <Grid container
@@ -88,6 +88,7 @@ export default function FormPropsTextFields(props) {
                         id='cod'
                         label="Cód do fornecedor"
                         required
+                        type="number"
                         columns={{ xs: 12, sm: 12, md: 3, lg: 3, xl: 3 }}
                         style={{ width: '100%', paddingRight: '20px' }}
                         onChange={handleChange('cod')}
@@ -104,17 +105,21 @@ export default function FormPropsTextFields(props) {
                         id='cnpj'
                         label="CNPJ"
                         required
+                        value={maskCnpj(values.cnpj)}
+                        maxLength='18'
                         columns={{ xs: 12, sm: 12, md: 3, lg: 3, xl: 3 }}
                         style={{ width: '100%', paddingRight: '20px' }}
-                        onChange={handleChange('cnpj')}
+                        onChange={handleChange(unMaskCnpj('cnpj'))}
                     />
                     <Input
                         id='fone'
                         label="Telefone"
                         required
+                        maxLength='13'
+                        value={maskFone(values.fone)}
                         columns={{ xs: 12, sm: 12, md: 3, lg: 3, xl: 3 }}
                         style={{ width: '100%', paddingRight: '20px' }}
-                        onChange={handleChange('fone')}
+                        onChange={handleChange(unMaskFone('fone'))}
                     />
                 </Grid>
 
@@ -130,6 +135,7 @@ export default function FormPropsTextFields(props) {
                     <Input
                         id='number'
                         label="Número"
+                        type="number"
                         style={{ width: '100%', paddingRight: '20px' }}
                         required
                         columns={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}
@@ -169,7 +175,7 @@ export default function FormPropsTextFields(props) {
                             variant='contained'
                             style={{ width: '100%', marginTop:'20px' }}
                             color='primary'
-                            onClick={e => handleSubmit(values)}
+                            onClick={handleSubmit}
                             name='Salvar'
                         />
                     </Grid>
