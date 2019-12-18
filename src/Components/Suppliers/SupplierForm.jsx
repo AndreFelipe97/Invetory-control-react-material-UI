@@ -5,7 +5,7 @@ import {useHistory} from 'react-router-dom'
 import api from "../../Services/api";
 import Input from "../../Itens/Input";
 import Button from "../../Itens/Button";
-import { maskCnpj, unMaskCnpj, unMaskFone, maskFone } from "../../Utils/Mask"
+import { maskCnpj, maskFone } from "../../Utils/Mask"
 
 
 const useStyles = makeStyles(theme => ({
@@ -106,10 +106,10 @@ export default function FormPropsTextFields(props) {
                         label="CNPJ"
                         required
                         value={maskCnpj(values.cnpj)}
-                        maxLength='18'
+                        maxLength='18' 
                         columns={{ xs: 12, sm: 12, md: 3, lg: 3, xl: 3 }}
                         style={{ width: '100%', paddingRight: '20px' }}
-                        onChange={handleChange(unMaskCnpj('cnpj'))}
+                        onChange={handleChange('cnpj')}
                     />
                     <Input
                         id='fone'
@@ -119,7 +119,7 @@ export default function FormPropsTextFields(props) {
                         value={maskFone(values.fone)}
                         columns={{ xs: 12, sm: 12, md: 3, lg: 3, xl: 3 }}
                         style={{ width: '100%', paddingRight: '20px' }}
-                        onChange={handleChange(unMaskFone('fone'))}
+                        onChange={handleChange('fone')}
                     />
                 </Grid>
 
