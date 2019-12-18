@@ -152,9 +152,9 @@ export default function MiniDrawer() {
                 <Divider />
                 <List>
                     {[
-                        { label: 'Inventory', path: '/', icon: (<AssignmentIcon />) },
+                        { label: 'Inventory', path: '/lista-produtos', icon: (<AssignmentIcon />) },
                         { label: 'Suppliers', path: '/lista-fornecedores', icon: (<PersonIcon />) },
-                        { label: 'Orders', path: '/', icon: (<CreateIcon />) }
+                        { label: 'Orders', path: '/lista-pedidos', icon: (<CreateIcon />) }
                     ].map((item, index) => (
                         <ListItem button key={index} onClick={handleClick(item.path)}>
                                 <ListItemIcon>
