@@ -23,6 +23,7 @@ export default function FormPropsTextFields(props) {
     const [values, setValues] = useState(null);
 
     const handleSubmit = (values) => {
+        console.log(values)
         api.post('/fornecedores/', values)
             .then(res => console.log(res))
     };
@@ -64,7 +65,7 @@ export default function FormPropsTextFields(props) {
         setValues({ ...values, [fieldName]: event.target.value });
     }
 
-    useEffect(() => {
+    useEffect((event) => {
         const id = props.match.params['id'] ? props.match.params['id'] : null
         loadForm(id);
     }, []);
@@ -76,7 +77,7 @@ export default function FormPropsTextFields(props) {
       }
 
     return (
-        values && <>
+        values &&<>
             <h3>Cadastro de fornecedores</h3>
             <form className={classes.root} noValidate autoComplete="off">
                 <Grid container
@@ -85,91 +86,86 @@ export default function FormPropsTextFields(props) {
                     alignItems="flex-start"
                 >
                     <Input
+                        id='cod'
                         label="Cód do fornecedor"
                         required
                         columns={{ xs: 12, sm: 12, md: 3, lg: 3, xl: 3 }}
                         style={{ width: '100%', paddingRight: '20px' }}
-                        value={values['cod']}
                         onChange={handleChange('cod')}
                     />
                     <Input
+                        id='corporate_name'
                         label="Razão sócial"
                         required
                         columns={{ xs: 12, sm: 12, md: 3, lg: 3, xl: 3 }}
                         style={{ width: '100%', paddingRight: '20px' }}
-                        value={values['corporate_name']}
                         onChange={handleChange('corporate_name')}
                     />
                     <Input
+                        id='cnpj'
                         label="CNPJ"
                         required
                         columns={{ xs: 12, sm: 12, md: 3, lg: 3, xl: 3 }}
                         style={{ width: '100%', paddingRight: '20px' }}
-                        value={values['cnpj']}
                         onChange={handleChange('cnpj')}
                     />
                     <Input
+                        id='fone'
                         label="Telefone"
                         required
                         columns={{ xs: 12, sm: 12, md: 3, lg: 3, xl: 3 }}
                         style={{ width: '100%', paddingRight: '20px' }}
-                        value={values['fone']}
                         onChange={handleChange('fone')}
                     />
                 </Grid>
 
                 <Grid container>
                     <Input
+                        id='public_place'
                         label="Logradouro"
                         style={{ width: '100%', paddingRight: '20px' }}
                         required
                         columns={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}
-                        value={values['public_place']}
                         onChange={handleChange('public_place')}
                     />
                     <Input
+                        id='number'
                         label="Número"
                         style={{ width: '100%', paddingRight: '20px' }}
                         required
                         columns={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}
-                        value={values['number']}
                         onChange={handleChange('number')}
                     />
                     <Input
+                        id='neighborhood'
                         label="Bairro"
                         style={{ width: '100%', paddingRight: '20px' }}
                         required
                         columns={{ xs: 12, sm: 12, md: 4, lg: 4, xl: 4 }}
-                        value={values['neighborhood']}
                         onChange={handleChange('neighborhood')}
                     />
                 </Grid>
 
                 <Grid container>
                     <Input
+                        id='city'
                         label="Cidade"
-                        // style={{ width: 550 }}
                         required
                         style={{ width: '100%', paddingRight: '20px' }}
                         columns={{ xs: 12, sm: 12, md: 6, lg: 6, xl: 6 }}
-                        value={values['city']}
                         onChange={handleChange('city')}
                     />
                     <Input
+                        id='state'
                         label="Estado"
-                        // style={{ width: 550 }}
                         required
                         style={{ width: '100%', paddingRight: '20px' }}
                         columns={{ xs: 12, sm: 12, md: 6, lg: 6, xl: 6 }}
-                        value={values['state']}
                         onChange={handleChange('state')}
                     />
                 </Grid>
                 <Grid container>
                     <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
-                        {/* <Button variant="contained" style={{ width: '100%', marginTop:'20px' }} color="primary" onClick={e => handleSubmit(values)}>
-                            Salvar
-                        </Button> */}
                         <Button
                             variant='contained'
                             style={{ width: '100%', marginTop:'20px' }}
@@ -179,9 +175,6 @@ export default function FormPropsTextFields(props) {
                         />
                     </Grid>
                     <Grid item xs={12} sm={12} md={2} lg={2} xl={2}>
-                        {/* <Button variant="contained" onClick={handleClick} style={{ width: '100%', marginLeft: '20px', marginTop:'20px' }} color="secondary">
-                            Cancelar
-                        </Button> */}
                         <Button
                             variant='contained'
                             style={{ width: '100%', marginLeft: '20px', marginTop:'20px' }}

@@ -1,1 +1,1 @@
-export const rota = 'https://api-invetory-control.herokuapp.com';
+export const rota = 'https://api-invetory-control.herokuapp.com'
